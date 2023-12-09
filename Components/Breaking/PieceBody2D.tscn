@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciaq8pwpwhj3j"]
+
+[ext_resource type="Script" path="res://Components/Breaking/PieceBody2D.gd" id="1_dymnm"]
+
+[node name="PieceBody2d" type="RigidBody2D"]
+script = ExtResource("1_dymnm")

@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://tntbjqtcva7w"]
+[gd_scene load_steps=4 format=3 uid="uid://tntbjqtcva7w"]
+
+[ext_resource type="Script" path="res://Base/SelectorContainer.gd" id="1_kcyqv"]
+[ext_resource type="PackedScene" uid="uid://byljqd7perb1i" path="res://Base/demo_button.tscn" id="2_5hi8m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvsrf"]
 
 [node name="MenuInicial" type="Control"]
 layout_mode = 3
@@ -8,8 +13,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "hola"
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Demos"
+label_settings = SubResource("LabelSettings_wvsrf")
+
+[node name="SelectorContainer" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_kcyqv")
+buttonScene = ExtResource("2_5hi8m")

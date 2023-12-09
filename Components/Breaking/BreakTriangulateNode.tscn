@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgi7p52qr44sv"]
+
+[ext_resource type="Script" path="res://Components/Breaking/BreakTriangulateNode.gd" id="1_puwql"]
+[ext_resource type="PackedScene" uid="uid://ciaq8pwpwhj3j" path="res://Components/Breaking/PieceBody2D.tscn" id="2_l8wrs"]
+
+[node name="BreakTriangulateNode" type="Node"]
+script = ExtResource("1_puwql")
+piece = ExtResource("2_l8wrs")

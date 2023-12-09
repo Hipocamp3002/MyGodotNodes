@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://byljqd7perb1i"]
+
+[ext_resource type="Script" path="res://Base/DemoButton.gd" id="1_xxxcn"]
+
+[node name="DemoButton" type="Button"]
+script = ExtResource("1_xxxcn")
+DemoDir = "res://Base/DemoBase.tscn"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

@@ -1,1 +1,1 @@
-Godot project to implement different nodes with composition
+Godot project to implement different nodes with composition.

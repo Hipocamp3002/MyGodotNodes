@@ -55,11 +55,7 @@ func Body_break():
 				if abs(s*v.length()) < min_width: create=false 
 		
 		if create:
-			var p = piece.instantiate()
-		
-			p.position = get_parent().position
-			p.set_shape(tri,Shape)
-			get_parent().add_sibling(p)
+			add_piece(tri,Shape)
 	
 	get_parent().queue_free()
 

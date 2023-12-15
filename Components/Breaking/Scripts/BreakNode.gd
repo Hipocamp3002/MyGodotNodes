@@ -19,5 +19,12 @@ func _get_configuration_warnings():
 	
 	return []
 
+func add_piece(new_poligon,Shape):
+	var p = piece.instantiate()
+	
+	p.position = get_parent().position
+	p.set_shape(new_poligon,Shape)
+	get_parent().add_sibling(p)
+
 func  Body_break():
 	pass

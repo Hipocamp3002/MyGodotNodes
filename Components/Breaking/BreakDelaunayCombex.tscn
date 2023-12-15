@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyvten3qdh6db"]
 
-[ext_resource type="Script" path="res://Components/Breaking/BreakDelaunayCombex.gd" id="1_smfva"]
+[ext_resource type="Script" path="res://Components/Breaking/Scripts/BreakDelaunayCombex.gd" id="1_smfva"]
 [ext_resource type="PackedScene" uid="uid://ciaq8pwpwhj3j" path="res://Components/Breaking/PieceBody2D.tscn" id="2_8yt1t"]
 
 [node name="BreakDelaunayCombex" type="Node"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3benta1qyhwq"]
 
-[ext_resource type="Script" path="res://Components/Breaking/BreakNode.gd" id="1_f67nh"]
+[ext_resource type="Script" path="res://Components/Breaking/Scripts/BreakNode.gd" id="1_f67nh"]
 [ext_resource type="PackedScene" uid="uid://ciaq8pwpwhj3j" path="res://Components/Breaking/PieceBody2D.tscn" id="2_ndp72"]
 
 [node name="BreakNode" type="Node"]

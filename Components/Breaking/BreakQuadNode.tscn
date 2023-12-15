@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djmc35rymewkd"]
+
+[ext_resource type="Script" path="res://Components/Breaking/Scripts/BreakQuadNode.gd" id="1_7pf5w"]
+
+[node name="BreakQuadNode" type="Node"]
+script = ExtResource("1_7pf5w")

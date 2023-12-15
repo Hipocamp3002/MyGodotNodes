@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://djkudgg4h4cst"]
+[gd_scene load_steps=7 format=3 uid="uid://djkudgg4h4cst"]
 
 [ext_resource type="Script" path="res://Components/Breaking/tests/GroundPolygon.gd" id="1_3fntd"]
 [ext_resource type="Texture2D" uid="uid://cx7qhq0r4hewy" path="res://icon.svg" id="2_yrr7v"]
 [ext_resource type="PackedScene" uid="uid://cgi7p52qr44sv" path="res://Components/Breaking/BreakTriangulateNode.tscn" id="3_6q6lx"]
 [ext_resource type="PackedScene" uid="uid://cyvten3qdh6db" path="res://Components/Breaking/BreakDelaunayCombex.tscn" id="4_p1r8u"]
+[ext_resource type="PackedScene" uid="uid://djmc35rymewkd" path="res://Components/Breaking/BreakQuadNode.tscn" id="5_duh32"]
+[ext_resource type="PackedScene" uid="uid://ciaq8pwpwhj3j" path="res://Components/Breaking/PieceBody2D.tscn" id="6_3b1kt"]
 
 [node name="BreakingTest" type="Node2D"]
 
@@ -46,7 +48,9 @@ position = Vector2(-746, -51)
 script = ExtResource("1_3fntd")
 
 [node name="BreakDelaunayCombex" parent="Breakable2" instance=ExtResource("4_p1r8u")]
-min_width = 15
+nunPoints = 50
+explosionForce = 0.0
+centerOffset = Vector2(-200, 0)
 
 [node name="Collider" type="CollisionPolygon2D" parent="Breakable2"]
 polygon = PackedVector2Array(26, 167, 45, 142, 65, 165)
@@ -63,5 +67,30 @@ polygon = PackedVector2Array(111, 15, 68, -137, -55, -75, -25, 64)
 [node name="Timer" type="Timer" parent="Breakable2"]
 autostart = true
 
+[node name="Breakable3" type="StaticBody2D" parent="."]
+position = Vector2(-231, -83)
+script = ExtResource("1_3fntd")
+
+[node name="BreakQuadNode" parent="Breakable3" instance=ExtResource("5_duh32")]
+cellSize = Vector2(20, 20)
+piece = ExtResource("6_3b1kt")
+explosionForce = 0.0
+
+[node name="Collider" type="CollisionPolygon2D" parent="Breakable3"]
+polygon = PackedVector2Array(26, 167, 45, 142, 65, 165)
+
+[node name="Shape" type="Polygon2D" parent="Breakable3"]
+texture_repeat = 2
+color = Color(0.85098, 0.85098, 0.85098, 1)
+texture = ExtResource("2_yrr7v")
+texture_offset = Vector2(-65.045, 49.655)
+texture_scale = Vector2(1.295, 1.295)
+texture_rotation = -0.513127
+polygon = PackedVector2Array(119, -78, 213, 3, 176, -96, 189, -184, 112, -121, -18, -84, 77, -44)
+
+[node name="Timer" type="Timer" parent="Breakable3"]
+autostart = true
+
 [connection signal="timeout" from="Breakable/Timer" to="Breakable/BreakTriangulateNode" method="Body_break"]
 [connection signal="timeout" from="Breakable2/Timer" to="Breakable2/BreakDelaunayCombex" method="Body_break"]
+[connection signal="timeout" from="Breakable3/Timer" to="Breakable3/BreakQuadNode" method="Body_break"]

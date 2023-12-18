@@ -38,13 +38,11 @@ func  Body_break():
 			var mov_sqr = square.duplicate()
 			for i in mov_sqr.size(): mov_sqr[i] += cur_pos
 			
-			var res = Geometry2D.exclude_polygons(polygon,mov_sqr)
-			var i = 0
-			while(i < res.size() and not Geometry2D.is_polygon_clockwise(res[i])): i += 1
-			if(i < res.size()):
-				var n_pol = res[i]
-				
-				add_piece(n_pol,Shape)
+			var res = Geometry2D.intersect_polygons(polygon,mov_sqr)
+			for p in res:
+				if(not Geometry2D.is_polygon_clockwise(p)):
+					add_piece_cen(p,Shape,cur_pos+cellSize*0.5)
+			
 			
 			cur_pos.x += cellSize.x
 		cur_pos.y += cellSize.y

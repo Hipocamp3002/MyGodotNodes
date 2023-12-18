@@ -23,21 +23,24 @@ func _get_configuration_warnings():
 	
 	return []
 
-func add_piece(new_poligon:PackedVector2Array, Shape):
+func add_piece_cen(new_poligon:PackedVector2Array, Shape, center:Vector2):
 	var p = piece.instantiate()
-	
 	p.position = get_parent().position
 	
 	if(p.get_class() == "RigidBody2D"):
-		var center = Vector2.ZERO
-		for v in new_poligon:
-			center += v
-		center -= centerOffset
 		(p as RigidBody2D).apply_impulse(center * explosionForce)
 	
 	p.set_shape(new_poligon,Shape)
 	
 	get_parent().add_sibling(p)
+
+func add_piece(new_poligon:PackedVector2Array, Shape):
+	var center = Vector2.ZERO
+	for v in new_poligon:
+		center += v
+	center -= centerOffset
+	
+	add_piece_cen(new_poligon,Shape,center)
 
 func  Body_break():
 	pass

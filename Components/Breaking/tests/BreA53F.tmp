@@ -72,7 +72,10 @@ position = Vector2(-231, -83)
 script = ExtResource("1_3fntd")
 
 [node name="BreakQuadNode" parent="Breakable3" instance=ExtResource("5_duh32")]
+cellSize = Vector2(25, 25)
 piece = ExtResource("6_3b1kt")
+explosionForce = null
+centerOffset = null
 
 [node name="Collider" type="CollisionPolygon2D" parent="Breakable3"]
 polygon = PackedVector2Array(26, 167, 45, 142, 65, 165)
@@ -84,7 +87,7 @@ texture = ExtResource("2_yrr7v")
 texture_offset = Vector2(-65.045, 49.655)
 texture_scale = Vector2(1.295, 1.295)
 texture_rotation = -0.513127
-polygon = PackedVector2Array(90, -78, 235, 5, 146, -101, 231, -172, -43, -103, 36, 3)
+polygon = PackedVector2Array(119, -78, 213, 3, 176, -96, 189, -184, 112, -121, -18, -84, 77, -44)
 
 [node name="Timer" type="Timer" parent="Breakable3"]
 autostart = true

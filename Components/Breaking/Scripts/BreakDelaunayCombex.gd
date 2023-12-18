@@ -24,38 +24,45 @@ func Body_break():
 		if(v.x > max_vec.x): max_vec.x = v.x
 		if(v.y > max_vec.y): max_vec.y = v.y
 	
-	#random points in rectangle
+	var decom = Geometry2D.decompose_polygon_in_convex(polygon)
+	var decom_p = decom.duplicate()
+	
 	var count = 0
 	while(count < nunPoints):
 		var x = randf_range(min_vec.x,max_vec.x)
 		var y = randf_range(min_vec.y,max_vec.y)
 		var v = Vector2(x,y)
-		if(Geometry2D.is_point_in_polygon(v,polygon)):
-			count += 1
-			points.push_back(v)
+		for i in decom.size():
+			if(Geometry2D.is_point_in_polygon(v,decom[i])):
+				count += 1
+				decom_p[i].push_back(v)
 	
-	var Triangulation = Geometry2D.triangulate_delaunay(points)
+	var de_tri = []
+	for i in decom_p.size():
+		de_tri.push_back(Geometry2D.triangulate_delaunay(decom_p[i]))
 	
-	for i in range(0,Triangulation.size(),3):
-		var tri : PackedVector2Array
-		tri.push_back(points[Triangulation[i]])
-		tri.push_back(points[Triangulation[i+1]])
-		tri.push_back(points[Triangulation[i+2]])
-		
-		var create = true
-		if(min_width > 0):
-			#check thickness
-			for j in 3:
-				var v = tri[(j+1)%3] - tri[j]
-				var u = tri[(j-1)%3] - tri[j]
-				
-				var c = v.dot(u)/(v.length()*u.length())
-				var s = sqrt(1-c*c)
+	for k in de_tri.size():
+		for i in range(0,de_tri[k].size(),3):
+			var tri : PackedVector2Array
+			tri.push_back(decom_p[k][de_tri[k][i]])
+			tri.push_back(decom_p[k][de_tri[k][i+1]])
+			tri.push_back(decom_p[k][de_tri[k][i+2]])
 			
-				if abs(s*v.length()) < min_width: create=false 
-		
-		if create:
-			add_piece(tri,Shape)
+			var create = true
+			if(min_width > 0):
+				#check thickness
+				for j in 3:
+					var v = tri[(j+1)%3] - tri[j]
+					var u = tri[(j-1)%3] - tri[j]
+					
+					var c = v.dot(u)/(v.length()*u.length())
+					var s = sqrt(1-c*c)
+				
+					if abs(s*v.length()) < min_width: create=false 
+			
+			if create:
+				add_piece(tri,Shape)
+	
 	
 	get_parent().queue_free()
 

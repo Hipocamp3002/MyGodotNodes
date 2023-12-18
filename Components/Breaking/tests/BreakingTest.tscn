@@ -68,7 +68,7 @@ polygon = PackedVector2Array(149, 23, 68, -137, 38, -68, -55, -75, -25, 64, 67, 
 autostart = true
 
 [node name="Breakable3" type="StaticBody2D" parent="."]
-position = Vector2(-483, -59)
+position = Vector2(-399, -57)
 script = ExtResource("1_3fntd")
 
 [node name="BreakQuadNode" parent="Breakable3" instance=ExtResource("5_duh32")]
@@ -111,8 +111,8 @@ autostart = true
 
 [node name="BreakSplit" type="Node" parent="Breakable4"]
 script = ExtResource("7_mlgd0")
+cut_angle = 30.0
 piece = ExtResource("6_3b1kt")
-explosionForce = 30.0
 
 [connection signal="timeout" from="Breakable/Timer" to="Breakable/BreakTriangulateNode" method="Body_break"]
 [connection signal="timeout" from="Breakable2/Timer" to="Breakable2/BreakDelaunayCombex" method="Body_break"]

@@ -37,18 +37,16 @@ func  Body_break():
 			add_piece(p,Shape)
 			pols.push_back(p)
 	
-	var out_pol = [polygon]
-	for c in pols:
-		var new_pol = []
-		for p in out_pol:
-			var aux = Geometry2D.exclude_polygons(p,c)
-			for a in aux:
-				if(not Geometry2D.is_polygon_clockwise(a)):
-					new_pol.push_back(a)
-		out_pol = new_pol
-		print(new_pol)
+	cut_plane.clear()
+	cut_plane.push_back((Vector2.RIGHT).rotated(ang) * diag - cut_pos)
+	cut_plane.push_back((Vector2.RIGHT + Vector2.DOWN).rotated(ang) * diag  - cut_pos)
+	cut_plane.push_back((Vector2.LEFT + Vector2.DOWN).rotated(ang) * diag  - cut_pos)
+	cut_plane.push_back((Vector2.LEFT).rotated(ang) * diag  - cut_pos)
+	
+	var out_pol = Geometry2D.intersect_polygons(polygon,cut_plane)
 	for p in out_pol:
 		if(not Geometry2D.is_polygon_clockwise(p)):
 			add_piece(p,Shape)
+			pols.push_back(p)
 	
 	get_parent().queue_free()
